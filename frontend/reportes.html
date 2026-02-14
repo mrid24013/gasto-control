@@ -28,6 +28,7 @@
         </div>
         
         
+        {% block content %}
         <div class="container mt-4">
             <h4>Reporte de Movimientos</h4>
             <table class="table table-bordered table-striped mt-3">
@@ -40,12 +41,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for movimiento in Movimientos %}
+                    {% for student in student_number %}
                     <tr>
-                        <td>{{ movimiento.monto }}</td>
-                        <td>{{ movimiento.fecha }}</td>
-                        <td>{{ movimiento.descripcion }}</td>
-                        <td>{{ movimiento.categoria }}</td>
+                        <td>{{ student.monto }}</td>
+                        <td>{{ student.fecha }}</td>
+                        <td>{{ student.descripcion }}</td>
+                        <td>{{ student.categoria_id }}</td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -55,5 +56,6 @@
                 </tbody>
             </table>
         </div>
+        {% endblock content %}
     </body>
 </html>
