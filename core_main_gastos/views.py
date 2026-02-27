@@ -1,7 +1,4 @@
 from django.shortcuts import render
-from django.views.generic import (
-    CreateView
-)
 from movimientos_gastos.models import Movimientos, Categorias
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -22,9 +19,3 @@ def home(request):
     }
     
     return render(request, 'reportes.html', contexto)
-
-class SignUpView(CreateView):
-    form_class = UserCreationForm
-    template_name = "authorization/signup.html"
-    success_url = '/login/'
-    redirect_authenticated_user = True
