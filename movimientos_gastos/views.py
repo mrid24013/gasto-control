@@ -11,21 +11,29 @@ from django.contrib.auth.decorators import login_required #Para funciones
 def home(request):
     return render(request, 'reportes.html')
 
-def index(request):
-    data = Movimientos.objects.all()
-    stu = {
-        "student_number": data
-    }
-    return render_to_response("login/profile.html", stu)
-
 class CreateViewCategoria(LoginRequiredMixin, CreateView):
     model = Categorias
     form_class = CategoriaForm
     template_name = 'categoria/crear_categoria.html'
     success_url = '/home/'
     
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
 class CreateViewMovimiento(LoginRequiredMixin, CreateView):
     model = Movimientos
     form_class = MovimientoForm
     template_name = 'movimiento/crear_movimiento.html'
     success_url = '/home/'
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['categoria'].queryset = Categorias.objects.filter(
+            user=self.request.user
+        )
+        return form

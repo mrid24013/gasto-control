@@ -17,9 +17,23 @@
             <div class="card">
                 <div class="card-body">
                     <h4>Registrar Categoria</h4>
+
                     <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+
+                        <div class="mb-3">
+                            <label>Nombre</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Tipo</label>
+                            <select  name="tipo" id="tipo" class="form-select" required>
+                                <option>Ingreso</option>
+                                <option>Gasto</option>
+                            </select>
+                        </div>
+        
                         <button type="submit" class="btn btn-success">Crear Categoria</button>
                     </form>
                 </div>

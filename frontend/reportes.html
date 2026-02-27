@@ -9,7 +9,11 @@
         <nav class="navbar navbar-dark bg-dark">
             <div class="container-fluid">
                 <span class="navbar-brand">Control de Gastos de {{ user.username }}</span>
-                <a href="/movimiento/crear/" class="btn btn-success btn-sm">Agregar Movimiento</a>
+                {% if isPrimeraCategoria == 0 %}
+                    <span style="color:red;" class="text">Debe agregar al menos una categoria</span>
+                {% else %}
+                    <a href="/movimiento/crear/" class="btn btn-success btn-sm">Agregar Movimiento</a>
+                {% endif %}
                 <a href="/categoria/crear/" class="btn btn-success btn-sm">Agregar Categoria</a>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
@@ -22,9 +26,9 @@
         
         <div class="container mt-4">
             <h4>Balance General</h4>
-            <p><strong>Ingresos:</strong> $0.00</p>
-            <p><strong>Gastos:</strong> $0.00</p>
-            <p><strong>Total:</strong> $0.00</p>
+            <p><strong>Ingresos:</strong> ${{ ingresos }}</p>
+            <p><strong>Gastos:</strong> ${{ gastos }}</p>
+            <p><strong>Total:</strong> ${{ total }}</p>
         </div>
         
         
@@ -35,18 +39,22 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Monto</th>
-                        <th>Fecha</th>
                         <th>Descripcion</th>
                         <th>Categoria</th>
+                        <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for student in student_number %}
+                    {% for movimiento in movimientos %}
                     <tr>
-                        <td>{{ student.monto }}</td>
-                        <td>{{ student.fecha }}</td>
-                        <td>{{ student.descripcion }}</td>
-                        <td>{{ student.categoria_id }}</td>
+                        {% if movimiento.categoria.tipo == "Gasto" %}
+                            <td style="color:red;">-{{ movimiento.monto }}</td>
+                        {% else %}
+                            <td style="color:green;">+{{ movimiento.monto }}</td>
+                        {% endif %}
+                        <td>{{ movimiento.descripcion }}</td>
+                        <td>{{ movimiento.categoria }}</td>
+                        <td>{{ movimiento.fecha }}</td>
                     </tr>
                     {% empty %}
                     <tr>

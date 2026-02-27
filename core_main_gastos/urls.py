@@ -18,15 +18,37 @@ from django.contrib import admin
 from .views import *
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import redirect
+from django.views.generic import (
+    CreateView
+)
+from django.conf.urls.static import static
+from django.conf import settings
+
+class CustomLoginView(LoginView):
+    template_name = 'authorization/login.html'
+    redirect_authenticated_user = True
+    
+class SignUpView(CreateView):
+    form_class = UserCreationForm
+    template_name = "authorization/signup.html"
+    success_url = '/login/'
+    
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('/home/')
+        return super().dispatch(request, *args, **kwargs)
 
 urlpatterns = [ 
     path('admin/', admin.site.urls),
     path('home/', home, name= 'home'),
     
-    path('login/', LoginView.as_view(template_name='authorization/login.html'), name='login'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('signup/', SignUpView.as_view(), name='signup'),
     
     #Custom URLs
     path('', include('movimientos_gastos.urls')),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

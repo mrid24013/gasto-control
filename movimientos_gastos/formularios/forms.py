@@ -4,7 +4,7 @@ from movimientos_gastos.models import Categorias, Movimientos, User
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categorias
-        fields = "__all__"
+        exclude = ['user']
         opciones = [('1','Gasto'), ('2','Ingreso')]
         labels = {
             'nombre': 'Nombre de la categoria',
@@ -18,7 +18,7 @@ class CategoriaForm(forms.ModelForm):
 class MovimientoForm(forms.ModelForm):
     class Meta:
         model = Movimientos
-        fields = "__all__"
+        exclude = ['user']
         labels = {
             'monto': 'Cantidad de dinero del movimiento',
             'fecha': 'Fecha del movimiento',

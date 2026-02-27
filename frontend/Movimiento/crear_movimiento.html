@@ -13,14 +13,37 @@
                 <a href="/home/" class="btn btn-success btn-sm">Regresar</a>
             </div>
         </nav>
-    
+
         <div class="container mt-4">
             <div class="card">
                 <div class="card-body">
                     <h4>Registrar Movimiento</h4>
+        
                     <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+        
+                        <div class="mb-3">
+                            <label>Monto</label>
+                            <input type="number" name="monto" id="monto" step="0.01" class="form-control" required>
+                        </div>
+        
+                        <div class="mb-3">
+                            <label>Descripción</label>
+                            <input type="text" name="descripcion" id="descripcion" step="0.01" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Categoría</label>
+                            <select class="form-select" name="categoria" id="categoria_id" required>
+                                <option value="">Seleccione una categoría</option>
+                                    {% for categoria in form.categoria.field.queryset %}
+                                        <option value="{{ categoria.id }}">
+                                            {{ categoria.nombre }}
+                                        </option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+        
                         <button type="submit" class="btn btn-success">Crear Movimiento</button>
                     </form>
                 </div>
