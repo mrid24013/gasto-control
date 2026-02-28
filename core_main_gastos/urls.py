@@ -26,12 +26,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 class CustomLoginView(LoginView):
-    template_name = 'authorization/login.html'
+    template_name = 'Authorization/login.html'
     redirect_authenticated_user = True
     
 class SignUpView(CreateView):
     form_class = UserCreationForm
-    template_name = "authorization/signup.html"
+    template_name = "Authorization/signup.html"
     success_url = '/login/'
     
     def dispatch(self, request, *args, **kwargs):
@@ -50,5 +50,3 @@ urlpatterns = [
     #Custom URLs
     path('', include('movimientos_gastos.urls')),
 ]
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

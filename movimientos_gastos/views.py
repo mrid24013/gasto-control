@@ -14,7 +14,7 @@ def home(request):
 class CreateViewCategoria(LoginRequiredMixin, CreateView):
     model = Categorias
     form_class = CategoriaForm
-    template_name = 'categoria/crear_categoria.html'
+    template_name = 'Categoria/crear_categoria.html'
     success_url = '/home/'
     
     def form_valid(self, form):
@@ -24,7 +24,7 @@ class CreateViewCategoria(LoginRequiredMixin, CreateView):
 class CreateViewMovimiento(LoginRequiredMixin, CreateView):
     model = Movimientos
     form_class = MovimientoForm
-    template_name = 'movimiento/crear_movimiento.html'
+    template_name = 'Movimiento/crear_movimiento.html'
     success_url = '/home/'
     
     def form_valid(self, form):
