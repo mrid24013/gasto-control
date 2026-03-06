@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Panel Principal</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    </head>
+    <body class="bg-dark">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <span style="color:rgb(0, 163, 68);" class="navbar-brand">Control de Gastos {{ user.username }} [Administrador]</span>
+                {% if isPrimeraCategoria == 0 %}
+                    <span style="color:red;" class="text">Debe agregar al menos una categoria</span>
+                {% else %}
+                    <a href="/movimiento/crear/" class="btn btn-success btn-sm bg-dark">Agregar Movimiento</a>
+                {% endif %}
+                <a href="/categoria/crear/" class="btn btn-success btn-sm bg-dark">Agregar Categoria</a>
+                <a href="/home-permissions/admin/" class="btn btn-success btn-sm bg-dark">Administrar Datos</a>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-light btn-sm bg-dark">
+                        Cerrar sesión
+                    </button>
+                </form>
+            </div>
+        </nav>
+        
+        <div class="container mt-4 text-white">
+            <h4>Balance General</h4>
+            <p><strong>Ingresos:</strong> ${{ ingresos }}</p>
+            <p><strong>Gastos:</strong> ${{ gastos }}</p>
+            <p><strong>Total:</strong> ${{ total }}</p>
+        </div>
+        
+        
+        {% block content %}
+        <div class="container mt-4 text-white">
+            <h4>Reporte de Movimientos</h4>
+            <table class="table table-bordered table-striped mt-3">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Monto</th>
+                        <th>Descripcion</th>
+                        <th>Categoria</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movimiento in movimientos %}
+                    <tr>
+                        {% if movimiento.categoria.tipo == "Gasto" %}
+                            <td style="color:red;">-{{ movimiento.monto }}</td>
+                        {% else %}
+                            <td style="color:green;">+{{ movimiento.monto }}</td>
+                        {% endif %}
+                        <td>{{ movimiento.descripcion }}</td>
+                        <td>{{ movimiento.categoria }}</td>
+                        <td>{{ movimiento.fecha }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No hay movimientos registrados</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endblock content %}
+    </body>
+</html>
