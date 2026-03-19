@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual de Usuario</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+        .contenedor {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h2 {
+            margin-top: 25px;
+            color: #333;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        .nota {
+            background-color: #fff3cd;
+            padding: 10px;
+            border-left: 5px solid #ffc107;
+            margin-top: 10px;
+        }
+        .problema {
+            background-color: #f8d7da;
+            padding: 10px;
+            border-left: 5px solid #dc3545;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+
+<h1>Manual de Usuario</h1>
+<h2>Sistema de Control de Gastos Personales</h2>
+
+<p>
+El presente manual tiene como objetivo guiar al usuario en el uso del sistema de Control de Gastos Personales, el cual permite registrar ingresos, egresos y visualizar reportes de manera sencilla.
+</p>
+
+<p>
+Este sistema está diseñado para ser intuitivo, sin embargo, este manual facilitará el aprendizaje y resolverá dudas comunes.
+</p>
+
+<!-- REGISTRO -->
+<h2>Registro de Usuario</h2>
+<ol>
+    <li>Ingresar a la página.</li>
+    <li>Dar clic en el botón “Registrar”.</li>
+    <li>Completar los campos:
+        <ul>
+            <li>Usuario</li>
+            <li>Contraseña</li>
+            <li>Confirmación de la contraseña</li>
+        </ul>
+    </li>
+    <li>Presionar el botón “Registrar”.</li>
+</ol>
+
+<div class="nota">
+<b>Nota:</b>
+<ul>
+    <li>El usuario debe ser único.</li>
+    <li>La contraseña debe cumplir con los requisitos mínimos de seguridad señalados en la página.</li>
+</ul>
+</div>
+
+<!-- LOGIN -->
+<h2>Inicio de Sesión</h2>
+<ol>
+    <li>Ingresar a la página.</li>
+    <li>Escribir:
+        <ul>
+            <li>Usuario</li>
+            <li>Contraseña</li>
+        </ul>
+    </li>
+    <li>Dar clic en “Ingresar”.</li>
+    <li>El usuario será redirigido al panel principal (Home).</li>
+</ol>
+
+<!-- DASHBOARD -->
+<h2>Panel Principal (Dashboard)</h2>
+<p>En esta sección el usuario puede visualizar:</p>
+<ul>
+    <li>Resumen de ingresos</li>
+    <li>Resumen de gastos</li>
+    <li>Balance total</li>
+    <li>Accesos rápidos a:
+        <ul>
+            <li>Crear Movimiento</li>
+            <li>Crear Categoría</li>
+            <li>Cerrar sesión</li>
+        </ul>
+    </li>
+</ul>
+
+<!-- CATEGORIA -->
+<h2>Crear Categoría</h2>
+<p>Antes de registrar movimientos, es necesario crear al menos una categoría.</p>
+<ol>
+    <li>Dar clic en “Agregar Categoría”.</li>
+    <li>Escribir el nombre de la categoría (Ej: Comida, Transporte).</li>
+    <li>Seleccionar si es gasto o ingreso.</li>
+    <li>Guardar.</li>
+    <li>La categoría quedará disponible para usar en movimientos.</li>
+</ol>
+
+<!-- MOVIMIENTOS -->
+<h2>Registrar Movimiento (Ingreso o Gasto)</h2>
+<ol>
+    <li>Dar clic en “Agregar Movimiento”.</li>
+    <li>Completar los campos:
+        <ul>
+            <li>Monto</li>
+            <li>Descripción</li>
+            <li>Categoría</li>
+        </ul>
+    </li>
+    <li>Presionar “Guardar”.</li>
+</ol>
+
+<div class="nota">
+<b>Nota:</b>
+<ul>
+    <li>Debe existir al menos una categoría.</li>
+    <li>El monto debe ser un número válido.</li>
+</ul>
+</div>
+
+<!-- LOGOUT -->
+<h2>Cerrar Sesión</h2>
+<ol>
+    <li>Dar clic en el botón “Cerrar sesión” en la barra superior.</li>
+    <li>El usuario será redirigido a la pantalla de login.</li>
+</ol>
+
+<!-- PROBLEMAS -->
+<h2>Problemas Comunes y Soluciones</h2>
+
+<div class="problema">
+<b>“No puedo crear un movimiento”</b><br>
+Causa: No existen categorías registradas<br>
+Solución: Crear una categoría primero
+</div>
+
+<div class="problema">
+<b>“No puedo iniciar sesión”</b><br>
+Causa: Usuario o contraseña incorrectos<br>
+Solución: Verificar datos o registrarse nuevamente
+</div>
+
+<div class="problema">
+<b>“No se guardan los datos”</b><br>
+Causa: Campos incompletos<br>
+Solución: Llenar todos los campos obligatorios
+</div>
+
+<div class="problema">
+<b>“No veo cambios reflejados”</b><br>
+Causa: No se actualizó la página<br>
+Solución: Recargar el navegador
+</div>
+
+<br>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a href="/home/" class="btn btn-success btn-sm">Regresar</a>
+    </div>
+</nav>
+
+</div>
+
+</body>
+</html>

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     "movimientos_gastos",
+    "import_export",
 ]
 
 MIDDLEWARE = [

@@ -21,6 +21,10 @@ class SignUpView(CreateView):
         if request.user.is_authenticated:
             return redirect('/home/')
         return super().dispatch(request, *args, **kwargs)
+    
+class HelpView(CreateView):
+    form_class = UserCreationForm
+    template_name = "ayuda.html"
 
 urlpatterns = [ 
     path('home-permissions/admin/login/', custom_redirect_view),
@@ -31,6 +35,7 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(next_page='/login/'), name='logout'),
     path('signup/', SignUpView.as_view(), name='signup'),
+    path('help/', HelpView.as_view(), name='help'),
     
     #Custom URLs
     path('', include('movimientos_gastos.urls')),
