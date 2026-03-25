@@ -34,10 +34,11 @@
                 <span class="navbar-brand">Control de Gastos de {{ user.username }}</span>
                 {% if isPrimeraCategoria == 0 %}
                     <span style="color:red;" class="text">Debe agregar al menos una categoria</span>
+                    <a href="/categoria/crear/" class="btn btn-success btn-sm">Agregar Categoria</a>
                 {% else %}
                     <a href="/movimiento/crear/" class="btn btn-success btn-sm">Agregar Movimiento</a>
+                    <a href="/categorias/" class="btn btn-success btn-sm">Ver Categorías</a>
                 {% endif %}
-                <a href="/categoria/crear/" class="btn btn-success btn-sm">Agregar Categoria</a>
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-outline-light btn-sm">
@@ -65,6 +66,7 @@
                         <th>Descripcion</th>
                         <th>Categoria</th>
                         <th>Fecha</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -78,6 +80,18 @@
                         <td>{{ movimiento.descripcion }}</td>
                         <td>{{ movimiento.categoria }}</td>
                         <td>{{ movimiento.fecha }}</td>
+
+                        <td>
+                            <a href="{% url 'editar_movimiento' movimiento.id %}" class="btn btn-warning btn-sm">Editar</a>
+                    
+                            <form method="POST" action="{% url 'eliminar_movimiento' movimiento.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Seguro que deseas eliminar este movimiento?');">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr>

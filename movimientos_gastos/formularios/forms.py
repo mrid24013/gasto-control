@@ -5,14 +5,14 @@ class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categorias
         exclude = ['user']
-        opciones = [('1','Gasto'), ('2','Ingreso')]
+        opciones = [('Gasto','Gasto'), ('Ingreso','Ingreso')]
         labels = {
             'nombre': 'Nombre de la categoria',
             'tipo': 'Tipo de categoria',
         }
         widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'forms-control'}),
-            'tipo': forms.Select(choices=opciones),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'tipo': forms.Select(choices=opciones, attrs={'class': 'form-control'}),
         }
         
 class MovimientoForm(forms.ModelForm):
@@ -23,9 +23,11 @@ class MovimientoForm(forms.ModelForm):
             'monto': 'Cantidad de dinero del movimiento',
             'fecha': 'Fecha del movimiento',
             'descripcion': 'Descripcion del movimiento',
+            'categoria': 'Categoria del movimiento',
         }
         widgets = {
-            'monto': forms.TextInput(attrs={'class': 'forms-control'}),
-            'fecha': forms.DateInput(attrs={'class': 'forms-control'}),
-            'descripcion': forms.TextInput(attrs={'class': 'forms-control'}),
+            'monto': forms.TextInput(attrs={'class': 'form-control'}),
+            'fecha': forms.DateInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
+            'categoria': forms.Select(attrs={'class': 'form-control'}),
         }
