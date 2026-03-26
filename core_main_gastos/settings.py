@@ -28,10 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-#ALLOWED_HOSTS = ['bryacvi.pythonanywhere.com']
-
-#CSRF_TRUSTED_ORIGINS = ['https://bryacvi.pythonanywhere.com']
-
 
 # Application definition
 
@@ -81,9 +77,13 @@ WSGI_APPLICATION = 'core_main_gastos.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": config('ENGINE'),
+        "NAME": config('NAME'),
+        "USER": config('USER'),
+        "PASSWORD": config('PASSWORD'),
+        "HOST": config('HOST'),
+        "PORT": config('PORT'),
     }
 }
 
@@ -123,7 +123,6 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-#STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "static"
 
 # Default primary key field type
