@@ -7,6 +7,8 @@ class EditarMovimientoView(CreateView):
 
 urlpatterns = [
     path('home/', home, name='home'),
+    path('exportar/csv/', exportarCSV, name='exportar_csv'),
+    path('exportar/csv/<int:year>/<int:month>/', exportarMesCSV, name='exportar_csv_mes'),
 
     path('categoria/crear/', CreateViewCategoria.as_view(), name='crear_categoria'),
     path('categorias/', lista_categoria, name='lista_categoria'),
