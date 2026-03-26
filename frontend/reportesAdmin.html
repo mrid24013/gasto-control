@@ -31,7 +31,9 @@
             <p><strong>Ingresos:</strong> ${{ ingresos }}</p>
             <p><strong>Gastos:</strong> ${{ gastos }}</p>
             <p><strong>Total:</strong> ${{ total }}</p>
-            <a href="{% url 'exportar_csv' %}" class="btn btn-primary btn-sm">Exportar Datos Totales</a>
+            {% if isPrimerMovimiento != 0 %}
+                <a href="{% url 'exportar_csv' %}" class="btn btn-primary btn-sm">Exportar Datos Totales</a>
+            {% endif %}
             <p><strong>______________________________________________________________________</strong></p>
         </div>
         
