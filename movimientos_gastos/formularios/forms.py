@@ -1,5 +1,5 @@
 from django import forms
-from movimientos_gastos.models import Categorias, Movimientos, User
+from movimientos_gastos.models import Categorias, Movimientos
 
 class CategoriaForm(forms.ModelForm):
     class Meta:
@@ -27,7 +27,8 @@ class MovimientoForm(forms.ModelForm):
         }
         widgets = {
             'monto': forms.TextInput(attrs={'class': 'form-control'}),
-            'fecha': forms.DateInput(attrs={'class': 'form-control'}),
+            'fecha': forms.DateTimeInput( attrs={'class': 'form-control', 'type': 'datetime-local'}, 
+                                         format='%Y-%m-%dT%H:%M'),
             'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria': forms.Select(attrs={'class': 'form-control'}),
         }

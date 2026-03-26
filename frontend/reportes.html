@@ -49,58 +49,84 @@
         </nav>
         
         <div class="container mt-4">
-            <h4>Balance General</h4>
+            <h2>Balance General</h2>
             <p><strong>Ingresos:</strong> ${{ ingresos }}</p>
             <p><strong>Gastos:</strong> ${{ gastos }}</p>
             <p><strong>Total:</strong> ${{ total }}</p>
+            <a href="{% url 'exportar_csv' %}" class="btn btn-primary btn-sm">Exportar Datos Totales</a>
+            <p><strong>______________________________________________________________________</strong></p>
         </div>
-        
         
         {% block content %}
-        <div class="container mt-4">
-            <h4>Reporte de Movimientos</h4>
-            <table class="table table-bordered table-striped mt-3">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Monto</th>
-                        <th>Descripcion</th>
-                        <th>Categoria</th>
-                        <th>Fecha</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for movimiento in movimientos %}
-                    <tr>
-                        {% if movimiento.categoria.tipo == "Gasto" %}
-                            <td style="color:red;">-{{ movimiento.monto }}</td>
-                        {% else %}
-                            <td style="color:green;">+{{ movimiento.monto }}</td>
-                        {% endif %}
-                        <td>{{ movimiento.descripcion }}</td>
-                        <td>{{ movimiento.categoria }}</td>
-                        <td>{{ movimiento.fecha }}</td>
+        {% for item in data_mensual %}
+            <div class="container mt-6">
+                <h4>Balance {{item.mes}}</h4>
+                <p><strong>Ingresos:</strong> ${{ item.ingresos }}</p>
+                <p><strong>Gastos:</strong> ${{ item.gastos }}</p>
+                <p><strong>Total:</strong> ${{ item.total }}</p>
+            </div>
+            <div class="container mt-6">
+                <h4>Movimientos</h4>
+                <table class="table table-bordered table-striped mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Monto</th>
+                            <th>Descripcion</th>
+                            <th>Categoria</th>
+                            <th>Fecha</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for movimiento in item.movimientos %}
+                            <tr>
+                            {% if movimiento.categoria.tipo == "Gasto" %}
+                                <td style="color:red;">-{{ movimiento.monto }}</td>
+                            {% else %}
+                                <td style="color:green;">+{{ movimiento.monto }}</td>
+                            {% endif %}
+                            <td>{{ movimiento.descripcion }}</td>
+                            <td>{{ movimiento.categoria }}</td>
+                            <td>{{ movimiento.fecha }}</td>
 
-                        <td>
-                            <a href="{% url 'editar_movimiento' movimiento.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            <td>
+                                <a href="{% url 'editar_movimiento' movimiento.id %}" class="btn btn-warning btn-sm">Editar</a>
                     
-                            <form method="POST" action="{% url 'eliminar_movimiento' movimiento.id %}" style="display:inline;">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('¿Seguro que deseas eliminar este movimiento?');">
-                                    Eliminar
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="4">No hay movimientos registrados</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                                <form method="POST" action="{% url 'eliminar_movimiento' movimiento.id %}" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('¿Seguro que deseas eliminar este movimiento?');">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4">No hay movimientos registrados</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <a href="{% url 'exportar_csv_mes' item.year item.month %}" class="btn btn-outline-primary btn-sm">Exportar Datos {{item.mes}}</a>
+                <p>____________________________________________________________________________________________________________________________________________</p>
+            </div>
+        {% empty %}
+            <div class="container mt-6">
+                <table class="table table-bordered table-striped mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Sin datos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">No hay movimientos registrados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
         {% endblock content %}
         <a href="/help/" class="help-button">?</a>
     </body>

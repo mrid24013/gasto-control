@@ -12,6 +12,6 @@ class Categorias(models.Model):
 class Movimientos(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     monto = models.FloatField()
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateTimeField()
     descripcion = models.TextField()
     categoria = models.ForeignKey(Categorias, on_delete=models.CASCADE)
