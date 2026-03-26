@@ -98,6 +98,7 @@ Este sistema está diseñado para ser intuitivo, sin embargo, este manual facili
     <li>Resumen de ingresos</li>
     <li>Resumen de gastos</li>
     <li>Balance total</li>
+    <li>Opción para exportar movimientos totales</li>
     <li>Accesos rápidos a:
         <ul>
             <li>Crear Movimiento</li>
@@ -105,17 +106,37 @@ Este sistema está diseñado para ser intuitivo, sin embargo, este manual facili
             <li>Cerrar sesión</li>
         </ul>
     </li>
+    <li>Tablas de movimientos con:
+        <ul>
+            <li>Organización por mes</li>
+            <li>Opción para Editar Movimiento.</li>
+            <li>Opción para Eliminar Movimiento</li>
+            <li>Opción para exportar movimientos de ese mes</li>
+        </ul>
+    </li>
 </ul>
 
 <!-- CATEGORIA -->
-<h2>Crear Categoría</h2>
-<p>Antes de registrar movimientos, es necesario crear al menos una categoría.</p>
+<h2>Gestión de Categorías</h2>
 <ol>
-    <li>Dar clic en “Agregar Categoría”.</li>
-    <li>Escribir el nombre de la categoría (Ej: Comida, Transporte).</li>
-    <li>Seleccionar si es gasto o ingreso.</li>
-    <li>Guardar.</li>
-    <li>La categoría quedará disponible para usar en movimientos.</li>
+    <li>Si ya se tiene una categoría:
+        <ul>
+            <li>Dar clic en "Ver Categorias" y ver las siguientes opciones.</li>
+            <li>Observar las categorías existentes.</li>
+            <li>Editar categorías.</li>
+            <li>Eliminar categorías</li>
+            <li>Opcion de "Agregar Categoría" estara disponible con los mismos pasos de abajo</li>
+        </ul>
+    </li>
+    <li>Si NO se tiene una categoría:
+        <ul>
+            <li>Dar clic en “Agregar Categoría”.</li>
+            <li>Escribir el nombre de la categoría (Ej: Comida, Transporte).</li>
+            <li>Seleccionar si es gasto o ingreso.</li>
+            <li>Guardar.</li>
+            <li>La categoría quedará disponible para usar en movimientos.</li>
+        </ul>
+    </li>
 </ol>
 
 <!-- MOVIMIENTOS -->
@@ -125,6 +146,7 @@ Este sistema está diseñado para ser intuitivo, sin embargo, este manual facili
     <li>Completar los campos:
         <ul>
             <li>Monto</li>
+            <li>Fecha</li>
             <li>Descripción</li>
             <li>Categoría</li>
         </ul>
@@ -137,6 +159,71 @@ Este sistema está diseñado para ser intuitivo, sin embargo, este manual facili
 <ul>
     <li>Debe existir al menos una categoría.</li>
     <li>El monto debe ser un número válido.</li>
+</ul>
+</div>
+
+<!-- EDITAR -->
+<h2>Editar Registros (Categorías o Movimientos)</h2>
+<ol>
+    <li>Dar clic en opción “Editar”.</li>
+    <li>Editar los campos</li>
+    <li>Para Movimiento:
+        <ul>
+            <li>Monto</li>
+            <li>Fecha</li>
+            <li>Descripción</li>
+            <li>Categoría</li>
+        </ul>
+    </li>
+    <li>Para categoría:
+        <ul>
+            <li>Nombre de la categoría (Ej: Comida, Transporte).</li>
+            <li>Gasto o Ingreso.</li>
+        </ul>
+    </li>
+    <li>Presionar “Guardar” o "Cancelar" en caso de querer regresar a la pantalla anterior sin alterar los registros.</li>
+</ol>
+
+<!-- BORRAR -->
+<h2>Borrar Registros (Categorías o Movimientos)</h2>
+<ol>
+    <li>Dar clic en opción “Borrar”.</li>
+    <li>Para Movimiento:
+        <ul>
+            <li>Revisar notificación emergente</li>
+            <li>Aceptar o Cancelar</li>
+        </ul>
+    </li>
+    <li>Para categoría:
+        <ul>
+            <li>Revisar notificación emergente</li>
+            <li>Aceptar o Cancelar</li>
+        </ul>
+    </li>
+</ol>
+<div class="nota">
+    <b>Nota:</b>
+    <ul>
+        <li>Para poder eliminar una categoría no debe de estar ligada a ningun movimiento.</li>
+    </ul>
+</div>
+
+<!-- EXPORTAR -->
+<h2>Exportación de Datos</h2>
+<ol>
+    <li>El usuario puede exportar información en formato CSV:
+        <ul>
+            <li>Exportación general</li>
+            <li>Exportación por mes</li>
+        </ul>
+    </li>
+    <li>Presionar “Exportar” y descargar archivos (.csv).</li>
+</ol>
+
+<div class="nota">
+<b>Nota:</b>
+<ul>
+    <li>Debe existir al menos un movimiento.</li>
 </ul>
 </div>
 
