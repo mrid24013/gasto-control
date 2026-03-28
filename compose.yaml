@@ -1,0 +1,10 @@
+services:
+    postgres:
+        image: ${POSTGRES_HOST}
+        ports:
+            - '${PORT}:${POSTGRES_PORT}'
+        environment:
+            - 'POSTGRES_PASSWORD=${PASSWORD}'
+            - POSTGRES_USER=${USER}
+            - POSTGRES_DB=${NAME}
+        container_name: databases2
